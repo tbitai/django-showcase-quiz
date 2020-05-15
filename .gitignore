@@ -1,0 +1,8 @@
+# SQLite DB
+db.sqlite3
+
+# Byte-compiled / optimized / DLL files
+# https://github.com/github/gitignore/blob/master/Python.gitignore#L1
+__pycache__/
+*.py[cod]
+*$py.class
