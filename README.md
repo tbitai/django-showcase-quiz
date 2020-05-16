@@ -46,3 +46,14 @@ A quiz app showcasing Django.
 Add questions and choices at `/admin` with the superuser.
 
 Take the quiz at `/quiz`.
+
+## Excercises
+
+1. What happens when you visit the `/quiz` page and there are no questions yet? Fix that behavior by returning a 404 
+   page.
+    
+2. Modify the admin so that questions and choices can be handled on one page.
+
+3. Add a constraint allowing only one correct choice per question.
+
+4. Make the order of the questions customizable.

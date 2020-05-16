@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-def hello(request):
-    return HttpResponse('Hello, world!')
+from .models import Question
+
+def first(request):
+    first_question = Question.objects.earliest('id')
+    return HttpResponse(first_question.text)
