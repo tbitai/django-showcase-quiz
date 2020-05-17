@@ -2,6 +2,9 @@
 
 A quiz app showcasing Django.
 
+![Screenshot showing question "What does 'Django' mean?" with choices "csángó", "Django Unchained" and 
+"Django Reinhardt", the background is a photo of a smoking man wearing a white suit](screenshot.png "Screenshot")
+
 ## Requirements
 
 * Python >=3.6, with `pip`.
