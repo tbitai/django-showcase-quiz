@@ -10,6 +10,12 @@
         background-color: black;
         color: white;
       }
+      .success {
+        color: green;
+      }
+      .error {
+        color: red;
+      }
     </style>
   </head>
   <body>
@@ -25,5 +31,10 @@
     {% endfor %}
     <input type="submit" value="Check">
     </form>
+    {% if messages %}
+    {% for message in messages %}
+    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+    {% endfor %}
+    {% endif %}
   </body>
 </html>

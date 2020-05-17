@@ -4,6 +4,6 @@ from . import views
 
 app_name = 'quiz'
 urlpatterns = [
-    path('', views.first),
+    path('', views.first, name='first'),
     path('<int:question_id>/check/', views.check, name='check'),
 ]

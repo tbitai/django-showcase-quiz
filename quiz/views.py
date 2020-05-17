@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+from django.contrib import messages
+from django.urls import reverse
 
 from .models import Question, Choice
 
@@ -10,5 +12,9 @@ def first(request):
 
 def check(request, question_id):
     choice = Choice.objects.get(id=request.POST['choice'])
-    return HttpResponse(choice.correct)
+    if choice.correct:
+        messages.success(request, 'That\'s right!')
+    else:
+        messages.error(request, 'Wrong!')
+    return HttpResponseRedirect(reverse('quiz:first'))
     
