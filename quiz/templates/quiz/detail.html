@@ -20,6 +20,7 @@
   </head>
   <body>
     <h1>Quiz</h1>
+    {% if not end %}
     <h2>{{ question.text }}</h2>
     <form action="{% url 'quiz:check' question.id %}" method="post">
     {% csrf_token %}
@@ -29,8 +30,11 @@
         <label for="choice{{ forloop.counter }}">{{ choice.text }}</label>
       </p>
     {% endfor %}
-    <input type="submit" value="Check">
+      <input type="submit" value="Check">
     </form>
+    {% else %}
+    <h2>THE END</h2>
+    {% endif %}
     {% if messages %}
     {% for message in messages %}
     <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>

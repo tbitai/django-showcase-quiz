@@ -10,12 +10,18 @@ def detail(request, question_id=None):
     context = {'question': question}
     return render(request, 'quiz/detail.html', context)
 
+def end(request):
+    return render(request, 'quiz/detail.html', {'end': True})
+
 def check(request, question_id):
     choice = Choice.objects.get(id=request.POST['choice'])
     if choice.correct:
         messages.success(request, 'That\'s right!')
     else:
         messages.error(request, 'Wrong!')
-    next_question = Question.objects.filter(id__gt=question_id).earliest('id')
-    return HttpResponseRedirect(reverse('quiz:detail', args=(next_question.id,)))
+    try:
+        next_question = Question.objects.filter(id__gt=question_id).earliest('id')
+        return HttpResponseRedirect(reverse('quiz:detail', args=(next_question.id,)))
+    except Question.DoesNotExist:
+        return HttpResponseRedirect(reverse('quiz:end'))
     
