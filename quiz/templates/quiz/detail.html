@@ -20,10 +20,10 @@
   </head>
   <body>
     <h1>Quiz</h1>
-    <h2>{{ first_question.text }}</h2>
-    <form action="{% url 'quiz:check' first_question.id %}" method="post">
+    <h2>{{ question.text }}</h2>
+    <form action="{% url 'quiz:check' question.id %}" method="post">
     {% csrf_token %}
-    {% for choice in first_question.choice_set.all %}
+    {% for choice in question.choice_set.all %}
       <p>
         <input type="radio" name="choice" value="{{ choice.id }}" id="choice{{ forloop.counter }}">
         <label for="choice{{ forloop.counter }}">{{ choice.text }}</label>

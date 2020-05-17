@@ -5,10 +5,10 @@ from django.urls import reverse
 
 from .models import Question, Choice
 
-def first(request):
-    first_question = Question.objects.earliest('id')
-    context = {'first_question': first_question}
-    return render(request, 'quiz/first.html', context)
+def detail(request, question_id=None):
+    question = Question.objects.earliest('id') if question_id is None else Question.objects.get(id=question_id)
+    context = {'question': question}
+    return render(request, 'quiz/detail.html', context)
 
 def check(request, question_id):
     choice = Choice.objects.get(id=request.POST['choice'])
@@ -16,5 +16,6 @@ def check(request, question_id):
         messages.success(request, 'That\'s right!')
     else:
         messages.error(request, 'Wrong!')
-    return HttpResponseRedirect(reverse('quiz:first'))
+    next_question = Question.objects.filter(id__gt=question_id).earliest('id')
+    return HttpResponseRedirect(reverse('quiz:detail', args=(next_question.id,)))
     
