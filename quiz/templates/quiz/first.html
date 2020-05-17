@@ -15,7 +15,8 @@
   <body>
     <h1>Quiz</h1>
     <p>{{ first_question.text }}</p>
-    <form>
+    <form action="{% url 'quiz:check' first_question.id %}" method="post">
+    {% csrf_token %}
     {% for choice in first_question.choice_set.all %}
       <p>
         <input type="radio" name="choice" value="{{ choice.id }}" id="choice{{ forloop.counter }}">
