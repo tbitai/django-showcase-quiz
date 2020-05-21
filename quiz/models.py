@@ -14,4 +14,4 @@ class Choice(models.Model):
     correct = models.BooleanField()
 
     def __str__(self):
-        return f'{self.question.text} {self.text} {"✓" if self.correct else ""}'
+        return f'{self.question.text} {self.text}{" ✓" if self.correct else ""}'
